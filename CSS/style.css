@@ -1,0 +1,59 @@
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #1e1e1e !important;
+}
+
+#navilink:hover {
+  outline: 1px solid white;
+  border-radius: 10px;
+}
+
+#cardimg {
+  border-radius: 5px;
+}
+
+.navbar i {
+  padding: 3px 3px;
+  border-radius: 5px;
+}
+
+.navbar i:hover {
+  background: #157347;
+}
+
+/*ABOUT US*/
+
+#ronquillo, #velasco, #espanola, #tumbokon, #capacillo {
+  cursor: pointer;
+  transition: ease-in-out .3s;
+}
+
+#ronquillo, #velasco, #espanola, #tumbokon, #capacillo .details {
+  text-align: center;
+  padding-top: 400px;
+}
+
+#ronquillo, #velasco, #espanola, #tumbokon, #capacillo {
+  filter: grayscale(90%);
+}
+
+#ronquillo:hover, #velasco:hover, #espanola:hover, #tumbokon:hover, #capacillo:hover {
+  filter: grayscale(0);
+  scale: 1.05;
+  border-radius: 15px;
+}
+
+/*APPLICATION*/
+
+.digits {
+  height: 70px !important;
+  width: 70px !important;
+  border-radius: 50% !important;
+}
+
+.resultviewer {
+  background-color: white !important;
+}
