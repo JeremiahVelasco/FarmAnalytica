@@ -25,14 +25,14 @@
 <h1 class="text-center">Registration</h1>
   <div class="row">
     <div class="col-md-6">
-      <label for="firstname" class="form-label">First Name</label>
-      <input name = "firstname" type="text" class="form-control" id="firstname">
-      <small id="emailHelpId" class="form-text text-muted"><?php echo form_error('firstname') ?></small>
+      <label for="firstName" class="form-label">First Name</label>
+      <input name = "firstName" type="text" class="form-control" id="firstName">
+      <small id="firstNameHelpId" class="form-text text-muted"><?php echo form_error('firstname') ?></small>
     </div>
     <div class="col-md-6">
-      <label for="lastname" class="form-label">Last Name</label>
-      <input name = "lastname" type="text" class="form-control" id="lastname">
-      <small id="emailHelpId" class="form-text text-muted"><?php echo form_error('lastname') ?></small>
+      <label for="lastName" class="form-label">Last Name</label>
+      <input name = "lastName" type="text" class="form-control" id="lastName">
+      <small id="lastNameHelpId" class="form-text text-muted"><?php echo form_error('lastname') ?></small>
     </div>
   </div>
   <div class="row py-3">
@@ -69,6 +69,18 @@
         <option>BARMM | Bangsamoro Autonomous Region in Muslim Mindanao</option>
       </select>
       <small id="emailHelpId" class="form-text text-muted"><?php echo form_error('region') ?></small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label for="soilType" class="form-label">Soil Type</label>
+      <input name = "soilType" type="text" class="form-control" id="soilType">
+      <small id="soilTypeHelpId" class="form-text text-muted"><?php echo form_error('soiltype') ?></small>
+    </div>
+    <div class="col-md-6">
+      <label for="areaFarm" class="form-label">Area</label>
+      <input name = "areaFarm" type="text" class="form-control" id="areaFarm">
+      <small id="areaFarmHelpId" class="form-text text-muted"><?php echo form_error('area') ?></small>
     </div>
   </div>
   <div class="row py-3">

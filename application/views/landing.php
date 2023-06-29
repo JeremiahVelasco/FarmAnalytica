@@ -51,6 +51,7 @@
         <!--FONT AWESOME CDN || FOR ICONS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+        
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
@@ -70,7 +71,7 @@
                 <a id="navilink" class="nav-link px-3 text-white" href="<?php echo base_url("Landing/about") ?>" rel="nofollow" target="_blank">About Us</a>
               </li>
               <li class="nav-item">
-                <a id="navilink" class="nav-link px-3 text-white" href="contact.html" target="_blank">Contact Us</a>
+                <a id="navilink" class="nav-link px-3 text-white" href="<?php echo base_url("Landing/contact") ?>" target="_blank">Contact Us</a>
               </li>
               <li class="nav-item dropdown">
                 <!-- Example split danger button -->
@@ -80,7 +81,7 @@
                                 <span class="visually-hidden">Toggle Dropdown</span>
                               </button>
                               <ul class="dropdown-menu" style = "width: 70px">
-                                <li><p class = "px-3" style = "font-weight: bold">Craig Ronquillo</p></li>
+                                <li><p class = "px-3" style = "font-weight: bold"><?php echo $infos['firstName'] . ' ' . $infos['lastName']; ?></p></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                   <table>
@@ -112,7 +113,7 @@
             <div class="container d-flex align-items-center justify-content-center text-center h-100">
               <div class="text-white">
                 <img src="<?php echo base_url("assets/images/NEW_FARMANALYTICA_V2.png")?>" width="350" height="90"> <br> <br>
-                <p class="mb-4 fs-5" id = "detail">Empowering Filipino Farmers with Machine Learning and Data Analytics.</p>
+                <p class="mb-4 fs-5" id = "detail">Empowering Local Agriculture with Machine Learning and Data Analytics.</p>
                 <a class="btn btn-outline-light btn-lg m-2" href="#" target="_blank"
                   rel="nofollow" target="_blank">Learn More</a>
                 <a class="btn btn-success btn-lg m-2" href="#" target="_blank"

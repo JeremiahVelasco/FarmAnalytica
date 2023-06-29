@@ -18,6 +18,7 @@ cr = open('c:/laragon/www/FarmAnalytica/application/pickledFiles/cropRecommendat
 
 crml = pickle.load(cr) 
 
+
 N = float(sys.argv[1])
 P = float(sys.argv[2])  
 K = float(sys.argv[3]) 

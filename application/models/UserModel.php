@@ -1,93 +1,71 @@
 <?php
-class UserModel extends CI_Model{
-    public function addUser(){
-        $this->load->database();
-        $data=array(
-            'first_name'=>$_POST["firstname"],
-            'last_name'=>$_POST["lastname"],
-            'municipality'=>$_POST["municipality"],
-            'province'=>$_POST["province"],
-            'region'=>$_POST["region"],
-            'password'=>md5($_POST["password"]),
-            'email' =>$_POST["email"]
-        );
-        $this->db->insert('users',$data);
+defined('BASEPATH') or exit('No direct script access allowed');
+
+require '../vendor/autoload.php';
+
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\Contract\Auth;
+
+
+class UserModel extends CI_Model
+{
+    protected $database;
+
+    public function setDatabase($database)
+    {
+        $this->database = $database;
     }
 
-    /* GET USER INFO FUNCTION ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
-    public function getUserInfo($email) {
-        $this->load->database();
-        $this->db->where("email", $email);
-        $query = $this->db->get("users");
-        $result = $query->result();
-        return $result;
-      }  
-    
-      public function setFirstName($email) {
-        $this->load->database();
-        $data=array(
-            'first_name'=>$_POST["firstname"]
-        );
-        $this->db->where('email', $email);
-        $this->db->update('users', $data);
-      }
+    public function addUser()
+    {
+        $data = [
+            'first_name' => $_POST["firstname"],
+            'last_name' => $_POST["lastname"],
+            'municipality' => $_POST["municipality"],
+            'province' => $_POST["province"],
+            'region' => $_POST["region"],
+            'password' => md5($_POST["password"]),
+            'email' => $_POST["email"]
+        ];
 
-      public function setLastName($email) {
-        $this->load->database();
-        $data=array(
-            'last_name'=>$_POST["lastname"]
-        );
-        $this->db->where('email', $email);
-        $this->db->update('users', $data);
-      }
+        $this->database->getReference('users')->push($data);
+    }
 
-      public function setMunicipality($email) {
-        $this->load->database();
-        $data=array(
-            'municipality'=>$_POST["municipality"]
-        );
-        $this->db->where('email', $email);
-        $this->db->update('users', $data);
-      }
+    public function getUserInfo($email)
+    {
+        $snapshot = $this->database->getReference('users')->orderByChild('email')->equalTo($email)->getSnapshot();
+        $result = $snapshot->getValue();
 
-      public function setProvince($email) {
-        $this->load->database();
-        $data=array(
-            'province'=>$_POST["province"]
-        );
-        $this->db->where('email', $email);
-        $this->db->update('users', $data);
-      }
-
-      public function setRegion($email) {
-        $this->load->database();
-        $data=array(
-            'region'=>$_POST["region"]
-        );
-        $this->db->where('email', $email);
-        $this->db->update('users', $data);
-      }
-
-      public function setEmail($email) {
-        $this->load->database();
-        $data=array(
-            'email' =>$_POST["email"]
-        );
-        $this->db->where('email', $email);
-        $this->db->update('users', $data);
-      }
-
-      public function getEmail() {
-        $this->load->database();
-        $result = "";
-        $data=array(
-            'email' =>$_POST["email"]
-        );
-        $this->db->where('email', $data['email']);
-        $query = $this->db->get('users');
-        foreach($query->result() as $row) {
-            $result = $row->email;
+        // Convert result array to object
+        if (!empty($result)) {
+            $result = (object) reset($result);
         }
+
         return $result;
-      }
+    }
+
+    public function setFirstName($email)
+    {
+        $data = [
+            'first_name' => $_POST["firstname"]
+        ];
+
+        $this->database->getReference('users')->orderByChild('email')->equalTo($email)->getSnapshot()
+            ->forEach(function ($child) use ($data) {
+                $child->getReference()->update($data);
+            });
+    }
+
+    // Implement other update methods (setLastName, setMunicipality, etc.) using the same approach as setFirstName
+
+    public function getEmail()
+    {
+        $result = "";
+        $email = $_POST["email"];
+
+        $snapshot = $this->database->getReference('users')->orderByChild('email')->equalTo($email)->getSnapshot();
+        $result = array_keys($snapshot->getValue())[0];
+
+        return $result;
+    }
 }

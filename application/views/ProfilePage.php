@@ -51,7 +51,7 @@
                                 <span class="visually-hidden">Toggle Dropdown</span>
                               </button>
                               <ul class="dropdown-menu" style = "width: 70px">
-                                <li><p class = "px-3" style = "font-weight: bold">Craig Ronquillo</p></li>
+                                <li><p class = "px-3" style = "font-weight: bold"><?php echo $infos['firstName'] . ' ' . $infos['lastName']; ?></p></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                   <table>
@@ -101,8 +101,9 @@
           <!--Section: Content-->
           <section class="text-center p-3">
             <h4 class="mb-5 text-white fs-2" id = "profile-section"><strong>YOUR PROFILE</strong></h4>
-
+            
             <?php foreach($infos as $info) { ?>
+              
               <div class="container text-center">
                 <div class="row align-items-center">
                   <div class="personal-info">
@@ -111,12 +112,38 @@
                             <br>
                             <img src="<?php echo base_url("assets/images/placeholder_picture.png")?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;"> 
                             <br> <br>
-                            <h2 class = "name"> <?php echo $info->first_name." ".$info->last_name ?> </h2>
+                            <h2 class = "name"><?php echo $infos['firstName'] . ' ' . $infos['lastName']; ?></h2>
                             <!--<p class = "role"> Project Manager </p>-->
                             <br>
                             <!--<a href="EditProfileCapstone.php" class="btn btn-primary">Edit Profile</a>--> 
                             <a class="btn btn-primary btn-lg m-2" href="<?php echo base_url("ProfileControl/EditProfile") ?>" target="_blank" role="button">Edit Profile</a>
                             <br> <br>
+
+                            <?php
+                            // Assuming you have an object with properties "firstName", "lastName", and "municipality" assigned to $info
+                            // Modify the code according to your object structure and variable names
+
+                            if (is_object($info)) {
+                              $email = $info->email;
+                              $firstName = $info->firstName;
+                              $lastName = $info->lastName;
+                              $municipality = $info->municipality;
+                              $province = $info->province;
+                              $region = $info->region;
+                              $soilType = $info->soilType;
+                              $areaFarm = $info->areaFarm;
+
+                            } else {
+                              $email = '';
+                              $firstName = '';
+                              $lastName = '';
+                              $municipality = '';
+                              $province = '';
+                              $region = '';
+                              $soilType = '';
+                              $areaFarm = '';
+                            }
+                            ?>
                             <!-- PERSONAL INFORMATION -->
                             <div class="card">
                               <div class="card-body">
@@ -128,7 +155,7 @@
                                       <p class="mb-0">FIRST NAME</p>
                                     </div>
                                     <div class="col-sm-9">
-                                      <p class="text-muted mb-0"><?php echo $info->first_name ?></p>
+                                      <p class="text-muted mb-0"><?php echo $infos['firstName']?></p>
                                     </div>
                                   </div>
                                   <hr>
@@ -137,7 +164,7 @@
                                       <p class="mb-0">LAST NAME</p>
                                     </div>
                                     <div class="col-sm-9">
-                                      <p class="text-muted mb-0"><?php echo $info->last_name ?></p>
+                                      <p class="text-muted mb-0"><?php echo $infos['lastName']?></p>
                                     </div>
                                   </div>
                                   <hr>
@@ -146,7 +173,7 @@
                                       <p class="mb-0">MUNICIPALITY</p>
                                     </div>
                                     <div class="col-sm-9">
-                                      <p class="text-muted mb-0"><?php echo $info->municipality ?></p>
+                                      <p class="text-muted mb-0"><?php echo $infos['municipality']?></p>
                                     </div>
                                   </div>
                                   <hr>
@@ -155,7 +182,7 @@
                                       <p class="mb-0">PROVINCE</p>
                                     </div>
                                     <div class="col-sm-9">
-                                      <p class="text-muted mb-0"><?php echo $info->province ?></p>
+                                      <p class="text-muted mb-0"><?php echo $infos['province']?></p>
                                     </div>
                                   </div>
                                   <hr>
@@ -164,7 +191,7 @@
                                       <p class="mb-0">REGION</p>
                                     </div>
                                     <div class="col-sm-9">
-                                      <p class="text-muted mb-0"><?php echo $info->region ?></p>
+                                      <p class="text-muted mb-0"><?php echo $infos['region']?></p>
                                     </div>
                                 </div>
                                 <hr>
@@ -173,7 +200,7 @@
                                       <p class="mb-0">EMAIL</p>
                                     </div>
                                     <div class="col-sm-9">
-                                      <p class="text-muted mb-0"><?php echo $info->email ?></p>
+                                      <p class="text-muted mb-0"><?php echo $infos['email']?></p>
                                     </div>
                                 </div>
                               </div>
